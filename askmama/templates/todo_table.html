@@ -1,0 +1,19 @@
+<table>
+    <thead>
+        <tr>
+            <th>Title</th><th>Completed</th><th>Created At</th><th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for todo in todos %}
+            <tr>
+                <td>{{ todo.title }}</td>
+                <td>{{ todo.completed }}</td>
+                <td>{{ todo.created_at }}</td>
+                <td>
+                    <a href="/todos/{{ todo.id }}">View</a></td>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

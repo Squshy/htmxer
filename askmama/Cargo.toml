@@ -9,6 +9,7 @@ edition = "2021"
 anyhow = "1.0.82"
 askama = "0.12.1"
 axum = "0.7.5"
+chrono = "0.4.38"
 lazy_static = "1.4.0"
 serde = { version = "1.0.200", features = ["serde_derive"] }
 tokio = { version = "1.37.0", features = ["full"] }
@@ -16,3 +17,20 @@ tower = "0.4.13"
 tower-http = { version = "0.5.2", features = ["fs"] }
 tracing = "0.1.40"
 tracing-subscriber = { version = "0.3.18", features = ["env-filter"] }
+uuid = { version = "0.8.1", features = ["v4", "serde"] }
+
+[dependencies.sqlx]
+version = "0.5.7"
+default-features = false
+features = [
+    "runtime-actix-rustls",
+    "macros",
+    "postgres",
+    "uuid",
+    "chrono",
+    "migrate",
+    "offline"
+]
+
+[build-dependencies]
+syn = "1"

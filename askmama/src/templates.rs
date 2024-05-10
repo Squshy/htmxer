@@ -4,9 +4,13 @@ use axum::{
     response::{Html, IntoResponse, Response},
 };
 
+use crate::todo::Todo;
+
 #[derive(Template)]
 #[template(path = "home.html")]
-pub struct Home {}
+pub struct Home {
+    pub todos: Vec<Todo>,
+}
 
 /// A wrapper type that we'll use to encapsulate HTML parsed by askama into valid HTML for axum to serve.
 pub struct HtmlTemplate<T>(pub T);
