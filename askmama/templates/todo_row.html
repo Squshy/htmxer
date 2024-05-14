@@ -1,0 +1,50 @@
+<tr id="todo_row_{{ todo.id }}">
+  <td class="p-4 pl-8 pb-3 text-slate-300 text-left border-b font-medium">
+    <input
+      type="text"
+      id="title_{{todo.id}}"
+      value="{{todo.title}}"
+      name="title"
+    />
+  </td>
+  <td class="p-4 pl-8 pb-3 text-slate-300 text-left border-b font-medium">
+    <input
+      id="completed_{{todo.id}}"
+      type="checkbox"
+      name="completed"
+      {%
+      if
+      todo.completed
+      %}
+      checked="{{todo.completed}}"
+      {%
+      endif
+      %}
+    />
+  </td>
+  <td
+    class="p-4 pl-8 pb-3 text-slate-300 text-left border-b font-medium"
+    x-data="{ createdAt: new Date('{{ todo.created_at }}') }"
+    x-text="createdAt.toLocaleString()"
+  ></td>
+  <td
+    class="p-4 pl-8 pb-3 text-slate-300 text-left border-b font-medium space-x-2"
+  >
+    <a href="/todos/{{ todo.id }}" hx-boost="true">👀</a>
+    <button
+      hx-delete="/todos/{{ todo.id }}"
+      hx-target="#todo_row_{{ todo.id }}"
+      hx-swap="outerHTML"
+    >
+      🗑️
+    </button>
+    <button
+      hx-post="/todos/{{ todo.id }}"
+      hx-target="#todo_row_{{ todo.id }}"
+      hx-swap="outerHTML"
+      hx-include="#title_{{todo.id}},#completed_{{todo.id}}"
+    >
+      ✍️
+    </button>
+  </td>
+</tr>

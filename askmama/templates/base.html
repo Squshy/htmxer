@@ -1,13 +1,20 @@
 <!doctype html>
 <html lang="en">
-<head>
-    <link href="/assets/main.css" rel="stylesheet"/>
-    <link href="https://rsms.me/inter/inter.css" rel="stylesheet"/>
+  <head>
+    <link href="/assets/main.css" rel="stylesheet" />
+    <link href="https://rsms.me/inter/inter.css" rel="stylesheet" />
+    <script
+      src="https://unpkg.com/htmx.org@1.9.2"
+      integrity="sha384-L6OqL9pRWyyFU3+/bjdSri+iIphTN/bvYyM37tICVyOJkWZLpP2vGn6VUEXgzg6h"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
     <title>{% block title %}{{ title }}{% endblock %}</title>
-</head>
-<body>
-    <div id="content">
-        {% block content %}{% endblock %}
-    </div>
-</body>
+  </head>
+  <body class="bg-slate-900 text-slate-200" hx-boost="true">
+    <div id="content">{% block content %}{% endblock %}</div>
+  </body>
 </html>

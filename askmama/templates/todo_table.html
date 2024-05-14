@@ -1,19 +1,40 @@
-<table>
-    <thead>
-        <tr>
-            <th>Title</th><th>Completed</th><th>Created At</th><th></th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for todo in todos %}
-            <tr>
-                <td>{{ todo.title }}</td>
-                <td>{{ todo.completed }}</td>
-                <td>{{ todo.created_at }}</td>
-                <td>
-                    <a href="/todos/{{ todo.id }}">View</a></td>
-                </td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<div
+  class="relative bg-slate-800/25 rounded-xl overflow-hidden border border-slate-800 my-12"
+>
+  <div class="relative rounded-xl overflow-auto">
+    <div class="shadow-sm overflow-hidden my-8">
+      <table class="table-fixed w-full text-sm border-collapse" id="todo-table">
+        <thead>
+          <tr>
+            <th
+              class="p-4 pl-8 pb-3 pt-0 text-slate-400 text-left border-b font-medium"
+            >
+              Title
+            </th>
+            <th
+              class="p-4 pl-8 pb-3 pt-0 text-slate-400 text-left border-b font-medium"
+            >
+              Completed
+            </th>
+            <th
+              class="p-4 pl-8 pb-3 pt-0 text-slate-400 text-left border-b font-medium"
+            >
+              Created At
+            </th>
+            <th
+              class="p-4 pl-8 pb-3 pt-0 text-slate-400 text-left border-b font-medium"
+            >
+              Actions
+            </th>
+          </tr>
+        </thead>
+        <tbody
+          class="bg-slate-800"
+          id="todo-table-body"
+          hx-get="/todos"
+          hx-trigger="load"
+        ></tbody>
+      </table>
+    </div>
+  </div>
+</div>

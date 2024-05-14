@@ -8,8 +8,30 @@ use crate::todo::Todo;
 
 #[derive(Template)]
 #[template(path = "home.html")]
-pub struct Home {
+pub struct Home {}
+
+#[derive(Template)]
+#[template(path = "todo_rows.html")]
+pub struct TodoRows {
     pub todos: Vec<Todo>,
+}
+
+#[derive(Template)]
+#[template(path = "todo_row.html")]
+pub struct TodoRow {
+    pub todo: Todo,
+}
+
+#[derive(Template)]
+#[template(path = "todo_not_found.html")]
+pub struct TodoNotFound {
+    pub id: uuid::Uuid,
+}
+
+#[derive(Template)]
+#[template(path = "todo_page.html")]
+pub struct TodoScene {
+    pub todo: Todo,
 }
 
 /// A wrapper type that we'll use to encapsulate HTML parsed by askama into valid HTML for axum to serve.

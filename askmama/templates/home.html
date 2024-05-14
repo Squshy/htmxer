@@ -1,12 +1,12 @@
 <!-- prettier-ignore -->
+
 {% extends "base.html" %}
 
 {% block title %}Hello!{% endblock %}
 
 {% block content %}
-<h1 class="text-green-500">Howdy!</h1>
-
-{% include "create_todo.html" %}
-{% include "todo_table.html" %}
-
+<div class="mx-auto max-w-6xl items-center justify-center space-y-4">
+  <h1 class="py-2 px-3 text-indigo-400 text-lg">Howdy!</h1>
+  {% include "create_todo.html" %} {% include "todo_table.html" %}
+</div>
 {% endblock %}

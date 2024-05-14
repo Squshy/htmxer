@@ -1,10 +1,39 @@
-<!-- prettier-ignore -->
-<form action="/todos" method="post">
-    <label for="title">Title</label>
-    <input id="title" type="text" name="title"/>
-    <label for="completed">Completed</label>
-    <input id="completed" type="checkbox" name="completed"/>
-    <button type="submit">
-        Create
-    </button>
+<form class="grid grid-cols-4 space-x-1">
+  <div class="col-span-2">
+    <label
+      for="title"
+      class="block text-sm font-medium leading-6 text-slate-400"
+      >Title</label
+    >
+    <input
+      id="title"
+      type="text"
+      name="title"
+      class="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-500"
+    />
+  </div>
+
+  <div>
+    <label
+      for="completed"
+      class="block text-sm font-medium leading-6 text-slate-400"
+      >Completed</label
+    >
+    <input
+      id="completed"
+      type="checkbox"
+      name="completed"
+      class="self-center my-auto w-full block rounded-md border-0 py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-500"
+    />
+  </div>
+
+  <button
+    hx-post="/todos"
+    hx-target="#todo-table-body"
+    hx-swap="afterbegin"
+    type="submit"
+    class="transition rounded-md bg-slate-800 px-3 py-2 text-sm font-semibold hover:bg-slate-700"
+  >
+    Create
+  </button>
 </form>
