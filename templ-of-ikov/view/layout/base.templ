@@ -11,3 +11,14 @@ templ Base() {
 		</body>
 	</html>
 }
+
+templ BaseWithComponent(cmp templ.Component) {
+	<html>
+		<head>
+			<link href="/css/main.css" rel="stylesheet"/>
+		</head>
+		<body>
+			@cmp
+		</body>
+	</html>
+}
