@@ -1,5 +1,33 @@
 package home
 
+import (
+    "ikov/view/layout"
+    "ikov/view/component"
+)
+
 templ Show() {
-	<h1 class="bg-red-500">Howdy</h1>
+    @layout.ContentWrapper() {
+        <div class="w-full">
+            <h1 class="text-3xl">Hello there</h1>
+            <p class="mt-2">Doing some htmx'in over here with the <i>classic</i> to-do app.</p>
+            @createTodo()
+        </div>
+    }
+}
+
+templ createTodo() {
+    <div>
+        @component.Input(component.InputProps{
+            Type: component.InputTypeText,
+            Id: "title",
+            Name: "title",
+            Label: "Title",
+        })
+        @component.Input(component.InputProps{
+            Type: component.InputTypeCheckbox,
+            Id: "completed",
+            Name: "completed",
+            Label: "Completed",
+        })
+    </div>
 }
