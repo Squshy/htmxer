@@ -6,10 +6,12 @@ import (
 )
 
 templ Show(todo model.Todo) {
-    <h1 class="bg-red-500">Howdy</h1>
-    <p>Hello { todo.Id }</p>
-    @component.Input(component.InputProps{
-        Type: "text",
-        Name: "title",
-    })
+    <div class="grid grid-cols-2">
+        <h1 class="bg-red-500">Howdy</h1>
+        <p>Hello { todo.Id }</p>
+        @component.Input(component.InputProps{
+            Type: "text",
+            Name: "title",
+        })
+    </div>
 }
