@@ -11,8 +11,12 @@ import "io"
 import "bytes"
 
 import (
+	"github.com/google/uuid"
+	"ikov/model"
 	"ikov/view/component"
 	"ikov/view/layout"
+	"ikov/view/todo"
+	"time"
 )
 
 func Show() templ.Component {
@@ -101,7 +105,20 @@ func createTodo() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div></div>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = todo.Show(model.Todo{
+			Id:        uuid.Max,
+			Title:     "Fake",
+			Completed: false,
+			CreatedAt: time.Now(),
+		}).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

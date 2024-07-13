@@ -1,8 +1,12 @@
 package home
 
 import (
+	"time"
+	"github.com/google/uuid"
+	"ikov/model"
 	"ikov/view/layout"
 	"ikov/view/component"
+	"ikov/view/todo"
 )
 
 templ Show() {
@@ -33,5 +37,11 @@ templ createTodo() {
 				Label: "Completed",
 			})
 		</div>
+		@todo.Show(model.Todo{
+			Id:        uuid.Max,
+			Title:     "Fake",
+			Completed: false,
+			CreatedAt: time.Now(),
+		})
 	</div>
 }
