@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "css": "pnpm tailwindcss -i ./assets/css/index.css -o ./assets//css/main.css"
+    "css": "pnpm tailwindcss -i ./assets/css/index.css -o ./assets/css/main.css"
   },
   "keywords": [],
   "author": "",
