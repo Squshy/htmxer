@@ -1,3 +1,4 @@
-tmp/*
+tmp/**
 **/**/*_templ.go
 build/**
+
