@@ -1,9 +1,12 @@
 package model
 
-import "time"
+import (
+	"github.com/google/uuid"
+	"time"
+)
 
 type Todo struct {
-	Id        string // TODO: uuid
+	Id        uuid.UUID
 	Title     string
 	Completed bool
 	CreatedAt time.Time
