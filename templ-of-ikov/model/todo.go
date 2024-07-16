@@ -6,8 +6,8 @@ import (
 )
 
 type Todo struct {
-	Id        uuid.UUID
-	Title     string
-	Completed bool
-	CreatedAt time.Time
+	Id        uuid.UUID `db:"id"`
+	Title     string    `db:"title"`
+	Completed bool      `db:"completed"`
+	CreatedAt time.Time `db:"created_at"`
 }

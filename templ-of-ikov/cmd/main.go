@@ -27,9 +27,11 @@ func main() {
 	}
 	homeHandler := handler.HomeHandler{}
 
+	router := app.Router()
+	todoHandler.Register(router)
+
 	// Routes
 	app.GET("/", homeHandler.HandleHome)
-	app.GET("/todo", todoHandler.HandleTodoShow)
 	// Serve CSS/JS
 	app.Static("/css", "assets/css")
 

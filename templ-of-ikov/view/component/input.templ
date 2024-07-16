@@ -12,29 +12,37 @@ type InputProps struct {
 	Id    string
 	Name  string
 	Label string
+    Checked bool
+    Value string
 }
 
 templ Input(props InputProps) {
-	<label
-		for={ props.Name }
-		class="block text-sm font-medium leading-6 text-slate-400"
-	>
-		{ props.Label }
-	</label>
-	switch props.Type {
-		case InputTypeText:
-			<input
-				id={ props.Id }
-				class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-				type="text"
-				name={ props.Name }
-			/>
-		case InputTypeCheckbox:
-			<input
-				id={ props.Id }
-				type="checkbox"
-				name={ props.Name }
-				class="self-center my-auto w-full block rounded-md border-0 py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-500"
-			/>
-	}
+    <div>
+        <label
+            for={ props.Name }
+            class="block text-sm font-medium leading-6 text-slate-400"
+        >
+            { props.Label }
+        </label>
+        switch props.Type {
+            case InputTypeText:
+                <input
+                    id={ props.Id }
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    type="text"
+                    name={ props.Name }
+                    value={ props.Value }
+                />
+            case InputTypeCheckbox:
+                <input
+                    id={ props.Id }
+                    type="checkbox"
+                    name={ props.Name }
+                    class="self-center my-auto w-full block rounded-md border-0 py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-500"
+                    if props.Checked == true {
+                        checked="true"
+                    }  
+                    />
+        }
+    </div>
 }

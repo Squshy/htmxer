@@ -1,12 +1,8 @@
 package home
 
 import (
-	"time"
-	"github.com/google/uuid"
-	"ikov/model"
 	"ikov/view/layout"
 	"ikov/view/component"
-	"ikov/view/todo"
 )
 
 templ Show() {
@@ -15,12 +11,18 @@ templ Show() {
 			<h1 class="text-3xl">Hello there</h1>
 			<p class="mt-2">Doing some htmx'in over here with the <i>classic</i> to-do app.</p>
 			@createTodo()
+            @todoContainer()
 		</div>
 	}
 }
 
+templ todoContainer() {
+    <div class="grid grid-cols-1 gap-3" id="todo-container" hx-get="/todos" hx-trigger="load">
+    </div>
+}
+
 templ createTodo() {
-	<div class="grid grid-cols-2 gap-4">
+	<form class="grid grid-cols-3 gap-4">
 		<div>
 			@component.Input(component.InputProps{
 				Type:  component.InputTypeText,
@@ -37,11 +39,14 @@ templ createTodo() {
 				Label: "Completed",
 			})
 		</div>
-		@todo.Show(model.Todo{
-			Id:        uuid.Max,
-			Title:     "Fake",
-			Completed: false,
-			CreatedAt: time.Now(),
-		})
-	</div>
+		<div class="flex items-center align-center">
+			<button
+				hx-target="#todo-container"
+                hx-swap="afterbegin"
+                type="submit"
+				class="py-3 px-6 bg-indigo-700 rounded-md text-center font-semibold hover:bg-indigo-800"
+				hx-post="/todos/create"
+			>Create</button>
+		</div>
+	</form>
 }

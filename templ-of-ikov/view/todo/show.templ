@@ -1,17 +1,58 @@
 package todo
 
 import (
-	"ikov/view/component"
+    "fmt"
 	"ikov/model"
+    "ikov/view/component"
 )
 
 templ Show(todo model.Todo) {
-    <div class="grid grid-cols-2">
-        <h1 class="bg-red-500">Howdy</h1>
-        <p>Hello { todo.Id.String() }</p>
-        @component.Input(component.InputProps{
-            Type: "text",
-            Name: "title",
-        })
-    </div>
+	<div class="grid grid-cols-3" id={fmt.Sprintf("todo_row_%s", todo.Id)}>
+        <div class="flex justify-center flex-col">
+            if todo.Completed {
+                <h1 class="text-xl">{ todo.Title } ✔️</h1>
+            } else {
+                <h1 class="text-xl">{ todo.Title } ❌</h1>
+            }
+            <p class="text-xs text-gray-600">Hello { todo.Id.String() }</p>
+        </div>
+        <div class="flex items-center align-center space-x-4">
+            @component.Input(component.InputProps{
+                Type: component.InputTypeText,
+                Id: fmt.Sprintf("%s_title", todo.Id),
+                Name: "title",
+                Label: "New Title",
+                Value: todo.Title,
+            })
+            
+			@component.Input(component.InputProps{
+				Type:  component.InputTypeCheckbox,
+                Id: fmt.Sprintf("%s_completed", todo.Id),
+				Name:  "completed",
+				Label: "Completed",
+                Checked: todo.Completed,
+			})
+        </div>
+        <div class="flex items-center align-center space-x-4">
+            <button
+             class="py-3 px-6 bg-indigo-700 rounded-md hover:bg-indigo-800"
+             hx-swap="outerHTML"
+             hx-target={fmt.Sprintf("#todo_row_%s", todo.Id)}
+             hx-include={fmt.Sprintf("#%s_title,#%s_completed", todo.Id, todo.Id)}
+             hx-post={fmt.Sprintf("/todos/update/%s", todo.Id)}>Update</button>
+            <button
+             class="py-3 px-6 bg-indigo-700 rounded-md hover:bg-indigo-800"
+             hx-swap="outerHTML"
+             hx-target={fmt.Sprintf("#todo_row_%s", todo.Id)}
+                hx-delete={fmt.Sprintf("/todos/delete/%s", todo.Id)}>Delete</button>
+        </div>
+	</div>
+}
+
+templ List(todos []model.Todo) {
+	<div>
+		for _, todo := range todos {
+			@Show(todo)
+		}
+	</div>
 }
